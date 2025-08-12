@@ -1,12 +1,15 @@
-import ProfileLogo from './components/profile'
+import BackgroundVideo from "./components/BackgroundVideo";
+import PortfolioPage from "./pages/PortfolioPage";
 
 function App() {
-
   return (
-    <div >
-      <ProfileLogo></ProfileLogo>
-    </div>
-  )
+    <>
+     
+    <BackgroundVideo>
+      <PortfolioPage />
+    </BackgroundVideo>
+    </>
+  );
 }
 
 export default App;
