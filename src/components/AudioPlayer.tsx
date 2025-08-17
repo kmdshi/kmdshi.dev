@@ -18,8 +18,8 @@ type Track = {
 };
 
 const tracks: Track[] = [
-  { title: "Сонный паралич", artist: "Автостопом по фазе сна", src: t4, cover: cover4  },
   { title: "Опять надо жить", artist: "Слава КПСС", src: t3 , cover: cover3 },
+  { title: "Сонный паралич", artist: "Автостопом по фазе сна", src: t4, cover: cover4  },
   { title: "я молодой вампир vamp", artist: "урал гайсин", src: t1, cover: cover1 },
   { title: "ПАПА", artist: "FORTUNA 812, тёмный принц", src: t2, cover: cover2 },
 ];
@@ -141,96 +141,89 @@ function AudioPlayer() {
   if (!cur) return null;
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 w-full">
-      <div className="text-xs uppercase text-white/60 mb-3">Слушает</div>
+    <div className="rounded-xl border border-white/10 p-4 w-full">
+      <div className="text-xs font-light text-white/70 mb-3">Слушает</div>
 
       <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start">
-  <div className="flex-shrink-0">
-    {cur.cover ? (
-      <img
-        src={cur.cover}
-        alt=""
-       className="w-48 h-48 sm:w-32 sm:h-32 rounded-md object-cover" 
-      />
-    ) : (
-      <div className="w-40 h-40 sm:w-32 sm:h-32 rounded-md bg-white/10" />
-    )}
-  </div>
-
-  <div className="flex flex-col flex-1 text-center sm:text-left"> 
-    <div>
-      <div className="text-white font-bold text-lg truncate">{cur.title}</div>
-      <div className="text-white/70 text-sm truncate">{cur.artist}</div>
-    </div>
-
-      <div className="mt-4 flex items-center gap-2">
-        <span className="text-xs text-white/70 tabular-nums min-w-[36px] text-right">
-          {formatTime(t)}
-        </span>
-        <input
-          type="range"
-          min={0}
-          max={dur || 0}
-          step="0.1"
-          value={t}
-          onChange={onSeek}
-          className="flex-1 accent-white"
-        />
-        <span className="text-xs text-white/70 tabular-nums min-w-[36px] text-left">
-          {formatTime(dur)}
-        </span>
-      </div>
-
-      <div className="mt-4 flex items-center gap-3">
-        <div className="flex items-center gap-2 justify-center flex-1">
-          <button
-            onClick={prev}
-            className="p-2 "
-          >
-            <Icon.Prev />
-          </button>
-          <button
-            onClick={toggle}
-            className="p-3 "
-          >
-            {playing ? <Icon.Pause /> : <Icon.Play />}
-          </button>
-          <button
-            onClick={next}
-            className="p-2 "
-          >
-            <Icon.Next />
-          </button>
+        {/* Обложка */}
+        <div className="flex-shrink-0">
+          {cur.cover ? (
+            <img
+              src={cur.cover}
+              alt=""
+              className="w-48 h-48 sm:w-32 sm:h-32 rounded-md object-cover"
+            />
+          ) : (
+            <div className="w-48 h-48 sm:w-32 sm:h-32 rounded-md bg-white/10" />
+          )}
         </div>
 
-        <div className="hidden sm:flex  items-center gap-1">
-          <button
-            onClick={toggleMute}
-            className="p-1"
-          >
-            {muted || vol === 0 ? <Icon.Mute /> : <Icon.Volume />}
-          </button>
-          <input
-           
-            type="range"
-            min={0}
-            max={1}
-            step="0.01"
-            value={muted ? 0 : vol}
-            onChange={onVol}
-            className="w-28 h-1 rounded-lg appearance-none cursor-pointer custom-range"
-            style={{
-              background: `linear-gradient(to right, white ${(muted ? 0 : vol) * 100}%, rgba(255,255,255,0.3) ${(muted ? 0 : vol) * 100}%)`
-            }}
-          />
+        {/* Информация и контролы */}
+        <div className="flex flex-col flex-1 text-center sm:text-left w-full">
+          <div>
+            <div className="text-white font-bold text-lg truncate">{cur.title}</div>
+            <div className="text-white/70 text-sm truncate">{cur.artist}</div>
+          </div>
+
+          {/* Слайдер */}
+          <div className="mt-4 flex items-center gap-2 w-full">
+            <span className="text-xs text-white/70 tabular-nums min-w-[36px] text-left">
+              {formatTime(t)}
+            </span>
+
+            <input
+              type="range"
+              min={0}
+              max={dur || 0}
+              step="0.1"
+              value={t}
+              onChange={onSeek}
+              className="flex-1 accent-white"
+            />
+
+            <span className="text-xs text-white/70 tabular-nums min-w-[36px] text-right">
+              {formatTime(dur)}
+            </span>
+          </div>
+
+          {/* Кнопки управления */}
+          <div className="mt-4 flex flex-col sm:flex-row items-center gap-3 w-full">
+            <div className="flex items-center gap-2 justify-center flex-1">
+              <button onClick={prev} className="p-2">
+                <Icon.Prev />
+              </button>
+              <button onClick={toggle} className="p-3">
+                {playing ? <Icon.Pause /> : <Icon.Play />}
+              </button>
+              <button onClick={next} className="p-2">
+                <Icon.Next />
+              </button>
+            </div>
+
+            <div className="flex items-center gap-2 justify-center sm:justify-start mt-2 sm:mt-0">
+              <button onClick={toggleMute} className="p-1">
+                {muted || vol === 0 ? <Icon.Mute /> : <Icon.Volume />}
+              </button>
+              <input
+                type="range"
+                min={0}
+                max={1}
+                step="0.01"
+                value={muted ? 0 : vol}
+                onChange={onVol}
+                className="w-28 h-1 rounded-lg appearance-none cursor-pointer"
+                style={{
+                  background: `linear-gradient(to right, white ${(muted ? 0 : vol) * 100}%, rgba(255,255,255,0.3) ${(muted ? 0 : vol) * 100}%)`
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
 
       <audio ref={audioRef} preload="metadata" />
     </div>
+
   );
 }
 

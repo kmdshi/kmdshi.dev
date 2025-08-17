@@ -27,8 +27,8 @@ function AboutMeCard() {
   }, []);
 
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
-      <h2 className="text-sm uppercase text-white/70">Обо мне</h2>
+    <div className="rounded-xl border up border-white/10  p-4 ">
+      <h2 className="text-sm font-light text-white/70">Обо мне</h2>
       <TypeAnimation
           sequence={[
           500, 
@@ -41,13 +41,19 @@ function AboutMeCard() {
         ]}
         wrapper="span"
         speed={50}
-        style={{ fontSize: '2em', display: 'inline-block' }}
+        style={{fontSize: '2em',
+              display: 'inline-block',
+              fontFamily: '"gg sans", "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif',
+              fontWeight: 600,
+              color: '#F7F7F7',
+              letterSpacing: '-0.2px',
+              WebkitFontSmoothing: 'antialiased' }}
         repeat={Infinity}
       />
       <p className="text-white/90 leading-relaxed">
         Живу в Санкт-Петербурге, занимаюсь программированием{" "}
         <span
-          className="text-emerald-300 cursor-default"
+          className="text-[#f1f9ff] cursor-default font-bold"
           title={formatDuration(seconds)}
         >
           {seconds.toLocaleString()} сек

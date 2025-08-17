@@ -1,4 +1,5 @@
 import { useRef, type ReactNode, type MouseEvent } from "react";
+import video from '../assets/video/kawai.mp4'
 
 interface BackgroundVideoProps {
   children?: ReactNode;
@@ -31,10 +32,10 @@ function BackgroundVideo({ children }: BackgroundVideoProps) {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover -z-10"
       >
-        <source src="src/assets/kawai.mp4" type="video/mp4" />
+        <source src={video} type="video/mp4" />
       </video>
 
-      <div className="absolute top-0 left-0 w-full h-full bg-black/60 pointer-events-none -z-10" />
+      <div className="absolute top-0 left-0 w-full h-full bg-black/85 pointer-events-none -z-10" />
 
       <div className="relative z-10">
         {children}

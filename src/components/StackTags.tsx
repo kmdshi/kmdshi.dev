@@ -90,7 +90,7 @@ function StackTags() {
 
   return (
     <div className="pt-3">
-      <h4 className="text-lg font-semibold">Stack</h4>
+      <h4 className="text-lg font-semibold">Стек</h4>
       <div className="flex flex-wrap gap-2 pt-2">
         {stackItems.map((item) => (
           <span

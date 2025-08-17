@@ -30,7 +30,7 @@ function LinksList() {
 
    return (
     <div className="pt-5">
-      <h4 className="text-lg font-semibold mb-2">Links</h4>
+      <h4 className="text-lg font-semibold mb-2">Ссылки</h4>
       <div className="flex flex-col gap-2">
         {links.map((link) => (
           <a

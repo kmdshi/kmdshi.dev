@@ -9,6 +9,7 @@ export default function Tabs() {
   const tabRefs = useRef<HTMLButtonElement[]>([]);
 
   const tabs = ["Профиль", "Опыт", "Проекты"];
+  const [lang, setLang] = useState<"ru" | "en">("ru");
 
   const contents = [
     <ProfileTab />,
@@ -52,15 +53,18 @@ export default function Tabs() {
           ))}
         </div>
 
-        <div
-          className="absolute bottom-0 h-0.5 bg-white transition-all duration-300"
-          style={{
-            left: indicatorStyle.left,
-            width: indicatorStyle.width,
-          }}
-        />
-      </div>
-        <div className="mt-4">{contents[active]}</div>
+      <div
+        className="absolute bottom-0 h-0.5 bg-white transition-all duration-300"
+        style={{
+          left: indicatorStyle.left,
+          width: indicatorStyle.width,
+        }}
+      />
     </div>
+    
+   
+
+    <div className="mt-4">{contents[active]}</div>
+  </div>
   );
 }

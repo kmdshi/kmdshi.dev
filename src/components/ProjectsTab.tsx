@@ -34,38 +34,31 @@ const platformIcons: Record<string, { icon: JSX.Element;  label: string }> = {
 
 const projects: Project[] = [
   {
-    icon: <FaGithub className="text-white/80 text-2xl" />,
+    icon: <img src="src/assets/png/chatsearcher.jpg" alt="Project Icon" className="w-10 h-10 rounded-xl" />,
     title: "ChatSearcher",
     desc: "Бот для поиска и фильтрации Telegram-чатов по интересам.",
-    tags: ["Telegram Bot", "FastAPI", "Python"],
+    tags: ["Python", "FastAPI", "Aiogram", "SQLite"],
     platforms: ['Telegram'],
-    repoUrl: "https://github.com/you/chatsearcher",
+    repoUrl: "https://github.com/kmdshi/chatSearcher",
   },
   {
-    icon: <FaGithub className="text-white/80 text-2xl" />,
-    title: "ETP Protocol",
-    desc: "Собственный криптографический протокол и демо-мессенджер.",
-    tags: ["Crypto", "Dart", "Flutter"],
+    icon: <img src="src/assets/png/cloudy.png" alt="Project Icon" className="w-10 h-10 rounded-xl" />,
+    title: "Cloudy",
+    desc: "Мессенджер с собстенным криптографическим протоколом ETP.",
+    tags: ["Flutter", "Crypto", "Supabase"],
     platforms: ['iOS', 'Android'],
-    repoUrl: "https://github.com/you/etp",
+    repoUrl: "https://github.com/kmdshi/cloudy",
   },
   {
-    icon: <FaGithub className="text-white/80 text-2xl" />,
+    icon: <img src="src/assets/png/screpa.png" alt="Project Icon" className="w-10 h-10 rounded-xl" />,
     title: "Screpagram",
-    desc: "Сатира на соцсети: система благонадёжности, ИИ-модерация, кураторы.",
-    tags: ["React", "Next.js", "Tailwind"],
+    desc: "Сатиристическая соц.сеть с интеграцей собественной нейронной сети.",
+    tags: ["Flutter",  "Python", "Firebase",],
     platforms: ['iOS', 'Android'],
-    repoUrl: "https://github.com/you/screpagram",
+    repoUrl: "https://github.com/kmdshi/screpagram",
   },
 ];
 
-function Tag({ children }: { children: string }) {
-  return (
-    <span className="text-xs px-2 py-1 rounded-full bg-white/10 border border-white/10 text-white/80">
-      {children}
-    </span>
-  );
-}
 
 
 function ProjectsTab() {
@@ -99,13 +92,18 @@ function ProjectsTab() {
             </div>
 
             <p className="text-sm text-zinc-300">{p.desc}</p>
-
-            <div className="flex flex-wrap gap-2 mt-auto">
-              {p.tags.map((t) => (
-                <Tag key={t}>{t}</Tag>
-              ))}
+                <div className="flex flex-wrap gap-2 mt-auto">
+                {p.tags.map((t, i) => (
+                  <span
+                    key={t}
+                    className={`text-xs px-2 py-0.5 rounded ${
+                      i === 0 ? "bg-white/45 text-white" : "bg-white/10 text-white/80"
+                    }`}
+                  >
+                    {t}
+                  </span>
+                ))}
             </div>
-
             <a
               href={p.repoUrl}
               target="_blank"
